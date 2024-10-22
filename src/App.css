@@ -1,0 +1,80 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+:root {
+  --primary-color: #9e78cf;
+  --secondary-color: #3e1671;
+}
+
+form {
+  display: flex;
+  font-size: 1.7rem;
+  justify-content: center;
+  margin: 15px 0;
+  padding: 0.8rem;
+  width: 100%;
+  gap: 10px;
+}
+
+input {
+  padding: 10px;
+  color: var(--primary-color);
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+}
+
+.submit-button {
+  border-radius: 6px;
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 10px;
+}
+.todo-item {
+  margin-bottom: 10px;
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid var(--secondary-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.task {
+  display: inline-flex;
+  gap: 10px;
+}
+.task span {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--primary-color);
+}
+.completed {
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+}
+.action-btn {
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border-radius: 100%;
+}
+svg {
+  color: var(--secondary-color);
+  font-size: 20px;
+}
+.action-btn:hover {
+  background-color: #1c152487;
+}
+.check-btn {
+  background-color: transparent;
+}
+.clear-btn {
+  background-color: #cc1156;
+  color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+}
