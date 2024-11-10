@@ -8,6 +8,7 @@ function App() {
     JSON.parse(localStorage.getItem("todo-list")) || []
   );
   const [edit, setEdit] = useState(null);
+  const [dragIndex, setDragIndex] = useState(null);
 
   useEffect(() => {
     localStorage.setItem("todo-list", JSON.stringify(items));
@@ -43,6 +44,33 @@ function App() {
   const handleClearAll = () => {
     setItems([]);
   };
+  const handleDragaStart = (e, i) => {
+    console.log("drasta", e, i);
+    // setDragIndex(i);
+    setDragIndex(i);
+  };
+  const handleDrop = (e, tagetIndex) => {
+    const newItems = [...items];
+    const spayload = newItems[dragIndex];
+    const tpayload = newItems[tagetIndex];
+    if (dragIndex === null) return;
+    newItems[tagetIndex] = spayload;
+    newItems[dragIndex] = tpayload;
+    setItems(newItems);
+  };
+  ///alternative approach
+  const handleDrop1 = (e, tagetIndex) => {
+    const newItems = [...items];
+    const payload = newItems[dragIndex];
+    if (dragIndex === null) return;
+    newItems.splice(dragIndex, 1);
+    newItems.splice(tagetIndex, 0, payload);
+    setItems(newItems);
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+  };
 
   return (
     <>
@@ -50,13 +78,16 @@ function App() {
       <TodoForm addToDo={addToDo} edit={edit} updateToDo={updateToDo} />
       <div className="todo-list">
         {items &&
-          items.map((x) => (
+          items.map((x, idx) => (
             <TodoItem
-              key={x.id}
+              key={x?.id}
               item={x}
               handleEdit={handleEdit}
               handleDelete={handleDelete}
               handleComplete={handleComplete}
+              handleDragaStart={(e) => handleDragaStart(e, idx)}
+              handleDrop={(e) => handleDrop(e, idx)}
+              handleDragOver={handleDragOver}
             />
           ))}
       </div>

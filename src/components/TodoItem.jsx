@@ -7,10 +7,24 @@ import {
   MdOutlineCheckBox,
 } from "react-icons/md";
 
-const TodoItem = ({ item, handleEdit, handleDelete, handleComplete }) => {
+const TodoItem = ({
+  item,
+  handleEdit,
+  handleDelete,
+  handleComplete,
+  handleDragaStart,
+  handleDragOver,
+  handleDrop,
+}) => {
   const { title, isComplete } = item;
   return (
-    <div className="todo-item">
+    <div
+      className="todo-item"
+      draggable
+      onDragStart={handleDragaStart}
+      onDrop={handleDrop}
+      onDragOver={handleDragOver}
+    >
       <div className="task">
         <button className="check-btn" onClick={() => handleComplete(item.id)}>
           {!isComplete ? <MdCheckBoxOutlineBlank /> : <MdOutlineCheckBox />}
